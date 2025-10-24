@@ -1,18 +1,19 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-interface Product {
+interface IProduct {
   name: string;
   description: string;
   price: Number;
-  category: string;
+  category: mongoose.Types.ObjectId;
   quantity: Number;
   image: string;
   available: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-const productSchema = new mongoose.Schema<Product>(
+const productSchema = new Schema<IProduct>(
   {
     name: {
       type: String,
@@ -25,6 +26,11 @@ const productSchema = new mongoose.Schema<Product>(
     },
     price: {
       type: Number,
+      required: true,
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
       required: true,
     },
     quantity: {
@@ -42,3 +48,7 @@ const productSchema = new mongoose.Schema<Product>(
   },
   { timestamps: true }
 );
+
+productSchema.plugin(mongooseAggregatePaginate);
+
+export const Product = mongoose.model("Product", productSchema);
