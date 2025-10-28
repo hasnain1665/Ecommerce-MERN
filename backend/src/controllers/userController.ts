@@ -146,7 +146,7 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const logoutUser = async (req: CustomRequest, res: Response) => {
+const logoutUser = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     await User.findByIdAndUpdate(
       req.user._id,
@@ -179,10 +179,9 @@ const logoutUser = async (req: CustomRequest, res: Response) => {
   }
 };
 
-const refreshAccessToken = async (req: Request, res: Response) => {
+const refreshAccessToken = async (req: Request, res: Response): Promise<void> => {
   try {
     const incomingRefreshToken = req.cookies.refreshToken;
-    console.log(incomingRefreshToken);
 
     if (!incomingRefreshToken) {
       res.status(401).send({
@@ -200,7 +199,6 @@ const refreshAccessToken = async (req: Request, res: Response) => {
       incomingRefreshToken,
       refreshTokenKey
     ) as CustomJwtPayload;
-    console.log(newDecodedToken._id);
 
     const user = await User.findById(newDecodedToken._id);
 

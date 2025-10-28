@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 
 // routes import
 import userRouter from "./routes/userRoutes";
+import categoryRouter from "./routes/categoryRoutes";
+import productRouter from "./routes/productRoutes";
 
 // configure env
 dotenv.config();
@@ -26,6 +28,8 @@ app.use(cookieParser());
 
 // routes declaration
 app.use("/users", userRouter);
+app.use("/category", categoryRouter);
+app.use("/product", productRouter);
 
 app.get("/", (req, res) => {
   res.send("Hasnain");

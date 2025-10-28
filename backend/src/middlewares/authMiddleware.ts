@@ -37,7 +37,7 @@ export const verifyJWT = async (
     const user = await User.findById(decodedToken?._id);
 
     if (!user) {
-      res.status(401).send({ message: "User not found" });
+      res.status(400).send({ message: "User not found" });
     }
 
     (req as CustomRequest).user = user;
@@ -49,5 +49,25 @@ export const verifyJWT = async (
       success: false,
       message: "Invalid or Expired Token",
     });
+  }
+};
+
+export const isAdmin = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = await User.findById(req.user?._id);
+    if (user?.role !== "Admin") {
+      return res.status(401).send({
+        success: false,
+        message: "Unauthorized Access",
+      });
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
