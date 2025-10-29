@@ -1,32 +1,16 @@
 import { Request, Response } from "express";
-import { Product } from "../models/productModel";
+import { IProduct, Product } from "../models/productModel";
 import { Category } from "../models/categoryModel";
+import { pagination } from "../utils/paginationHelper";
 
 const createProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, description, price, category, quantity } = req.body;
-
-    if (!name) {
-      res.status(400).send({ message: "Name is Required" });
-    }
-
-    if (!description) {
-      res.status(400).send({ message: "Description is Required" });
-    }
-
-    if (!price) {
-      res.status(400).send({ message: "Price is Required" });
-    }
-
-    if (!category) {
-      res.status(400).send({ message: "Category is Required" });
-    }
-
-    if (!quantity) {
-      res.status(400).send({ message: "Quantity is Required" });
-    }
-
     const image = req.file?.path;
+
+    if (!name || !description || !price || !category || !quantity || !image) {
+      res.status(400).send({ message: "All fields are Required" });
+    }
 
     const existingProduct = await Product.findOne({ name });
 
@@ -85,23 +69,20 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
 
 const getProducts = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { limit = "10", page = "1" } = req.query;
+    const { limit = "10", page = "1" } = req.query as {
+      limit?: string;
+      page?: string;
+    };
 
-    const pageLimit = Number(limit);
-    const pageNumber = Number(page);
-
-    const products = await Product.find({})
-      .limit(pageLimit)
-      .skip((pageNumber - 1) * pageLimit)
-      .sort({ createdAt: -1 });
+    const products = await pagination<IProduct>(Product, limit, page);
 
     const count = await Product.countDocuments();
 
     res.status(201).json({
       success: true,
       message: "Products Fetched Successfully",
-      totalPages: Math.ceil(count / pageLimit),
-      currentPage: pageNumber,
+      totalPages: Math.ceil(count / Number(limit)),
+      currentPage: Number(page),
       products,
     });
   } catch (error) {

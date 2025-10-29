@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-interface IProduct {
+export interface IProduct extends Document {
   name: string;
   description: string;
   price: Number;

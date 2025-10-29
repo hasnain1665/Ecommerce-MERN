@@ -9,9 +9,9 @@ import {
 
 const router = Router();
 
-router.post("/create-category", verifyJWT, isAdmin, createCategory);
-router.put("/update-category/:id", verifyJWT, isAdmin, updateCategory);
-router.delete("/delete-category/:id", verifyJWT, isAdmin, deleteCategory);
-router.get("/get-categories", verifyJWT, isAdmin, getCategories);
+router.post("/create", verifyJWT, isAdmin, createCategory);
+router.put("/update/:id", verifyJWT, isAdmin, updateCategory);
+router.delete("/delete/:id", verifyJWT, isAdmin, deleteCategory);
+router.get("/get", verifyJWT, isAdmin, getCategories);
 
 export default router;

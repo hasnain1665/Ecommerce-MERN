@@ -13,22 +13,22 @@ import {
 const router = Router();
 
 router.post(
-  "/create-product",
+  "/create",
   verifyJWT,
   isAdmin,
   upload.single("image"),
   createProduct
 );
-router.get("/all-products", getAllProducts);
+router.get("/get-all", getAllProducts);
 router.get("/products", getProducts);
-router.get("/get-product/:id", getSingleProduct);
+router.get("/get-single/:id", getSingleProduct);
 router.put(
-  "/update-product/:id",
+  "/update/:id",
   verifyJWT,
   isAdmin,
   upload.single("image"),
   updateProduct
 );
-router.delete("/delete-product/:id", verifyJWT, isAdmin, deleteProduct);
+router.delete("/delete/:id", verifyJWT, isAdmin, deleteProduct);
 
 export default router;

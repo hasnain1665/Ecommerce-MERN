@@ -1,11 +1,16 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+export enum UserRole {
+  ADMIN = "Admin",
+  USER = "User",
+}
+
 export interface IUser extends Document {
   email: string;
   fullname: string;
   password: string;
   refreshToken: string;
-  role: "Admin" | "User";
+  role: UserRole.ADMIN | UserRole.USER;
 }
 
 const userSchema = new Schema<IUser>(
@@ -26,13 +31,10 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, "Password is required"],
     },
-    refreshToken: {
-      type: String,
-    },
     role: {
       type: String,
-      enum: ["Admin", "User"],
-      default: "User",
+      enum: [UserRole.ADMIN, UserRole.USER],
+      default: UserRole.USER,
     },
   },
   { timestamps: true }

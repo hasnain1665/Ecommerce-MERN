@@ -15,16 +15,8 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { fullname, email, password } = req.body;
 
-    if (!fullname) {
-      res.status(400).send({ message: "Full Name is Required" });
-    }
-
-    if (!email) {
-      res.status(400).send({ message: "Email is Required" });
-    }
-
-    if (!password) {
-      res.status(400).send({ message: "Password is Required" });
+    if (!fullname || !email || !password) {
+      res.status(400).send({ message: "All Fields are Required" });
     }
 
     const existingUser = await User.findOne({ email });
@@ -63,12 +55,8 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
-    if (!email) {
-      res.status(400).send({ message: "Email is Required" });
-    }
-
-    if (!password) {
-      res.status(400).send({ message: "Password is Required" });
+    if (!email || !password) {
+      res.status(400).send({ message: "All Fields are Required" });
     }
 
     const user = await User.findOne({ email });
@@ -114,12 +102,6 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
       expiresIn: `${refreshTokenExpiry}d` || "3d",
     });
 
-    user.refreshToken = refreshToken;
-
-    await user.save();
-
-    const loggedInUser = await User.findById(user._id).select("-refreshToken");
-
     const options = {
       httpOnly: true,
       secure: true,
@@ -132,7 +114,7 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
       .json({
         success: true,
         message: "User Logged In Successfully",
-        user: loggedInUser,
+        user,
         accessToken,
         refreshToken,
       });
@@ -148,14 +130,6 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
 
 const logoutUser = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
-    await User.findByIdAndUpdate(
-      req.user._id,
-      {
-        $set: { refreshToken: undefined },
-      },
-      { new: true }
-    );
-
     const options = {
       httpOnly: true,
       secure: true,
@@ -179,7 +153,10 @@ const logoutUser = async (req: CustomRequest, res: Response): Promise<void> => {
   }
 };
 
-const refreshAccessToken = async (req: Request, res: Response): Promise<void> => {
+const refreshAccessToken = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const incomingRefreshToken = req.cookies.refreshToken;
 
@@ -204,10 +181,6 @@ const refreshAccessToken = async (req: Request, res: Response): Promise<void> =>
 
     if (!user) {
       res.status(401).send({ message: "Invalid Refresh Token" });
-    }
-
-    if (incomingRefreshToken !== user?.refreshToken) {
-      res.status(401).send({ message: "Refresh Token is Expired" });
     }
 
     // Access Token

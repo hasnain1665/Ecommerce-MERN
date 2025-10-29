@@ -89,14 +89,14 @@ const getCategories = async (req: Request, res: Response): Promise<void> => {
     const categories = await Category.find({});
     res.status(201).json({
       success: true,
-      message: "All Categories Retreived Successfully",
+      message: "All Categories Fetched Successfully",
       categories,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       success: false,
-      message: "Something went wrong while retreiving all categories",
+      message: "Something went wrong while fetching all categories",
       error,
     });
   }
