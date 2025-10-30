@@ -1,24 +1,39 @@
 import {
   Navbar,
-  Collapse,
+  //Collapse,
   Typography,
   Button,
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import logo from "../assets/logo.png";
+import cart_icon from "../assets/cart_icon.png";
+import { Link } from "react-router-dom";
 
 interface NavItemPropsType {
   label: string;
+  isActive: boolean;
+  onClick: () => void;
+  path: string;
 }
 
-function NavItem({ label }: NavItemPropsType) {
+function NavItem({ label, isActive, onClick, path }: NavItemPropsType) {
   return (
-    <a href="#">
+    <Link
+      to={path}
+      onClick={() => {
+        onClick();
+      }}
+    >
       <Typography
         as="li"
         color="blue-gray"
-        className="p-1 font-medium"
+        className={`flex flex-col items-center justify-center gap-[30px] transition-all duration-300 border-b-2 ${
+          isActive
+            ? "border-red-600 text-red-600"
+            : "border-transparent hover:text-red-600"
+        }`}
         placeholder={undefined}
         onResize={undefined}
         onResizeCapture={undefined}
@@ -27,22 +42,36 @@ function NavItem({ label }: NavItemPropsType) {
       >
         {label}
       </Typography>
-    </a>
+    </Link>
   );
 }
 
-function NavList() {
+interface NavListProps {
+  activeItem: string;
+  setActiveItem: (item: string) => void;
+}
+
+function NavList({ activeItem, setActiveItem }: NavListProps) {
+  const navItems = ["Shop", "Men", "Women", "Kids"];
+  const paths = ["/", "/men", "/women", "/kids"];
   return (
-    <ul className="mb-4 mt-2 flex flex-col gap-3 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-8">
-      <NavItem label="About Us" />
-      <NavItem label="Pricing" />
-      <NavItem label="Contact Us" />
+    <ul className="flex items-center gap-[50px] text-black text-[15px] font-[500]">
+      {navItems.map((item, index) => (
+        <NavItem
+          key={item}
+          label={item}
+          isActive={activeItem === item}
+          onClick={() => setActiveItem(item)}
+          path={paths[index]}
+        />
+      ))}
     </ul>
   );
 }
 
 const AppNavBar = () => {
   const [open, setOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("Shop");
 
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -56,34 +85,53 @@ const AppNavBar = () => {
       onPointerEnterCapture={undefined}
       onPointerLeaveCapture={undefined}
     >
-      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          color="blue-gray"
-          className="mr-4 cursor-pointer text-lg font-bold"
-          placeholder={undefined}
-          onResize={undefined}
-          onResizeCapture={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          Material Tailwind
-        </Typography>
-        <div className="hidden lg:block">
-          <NavList />
+      <div className="container mx-auto flex items-center justify-around p-[16px] shadow-[0_1px_3px_-2px_rgb(0,0,0)]">
+        <div className="flex items-center gap-[10px]">
+          <img src={logo} alt="Company Logo" />
+          <Typography
+            className="text-[#171717] text-[25px] font-[600]"
+            placeholder={undefined}
+            onResize={undefined}
+            onResizeCapture={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            SHOPPER
+          </Typography>
         </div>
-        <Button
-          color="gray"
-          className="hidden lg:inline-block"
-          placeholder={undefined}
-          onResize={undefined}
-          onResizeCapture={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          Sign in
-        </Button>
+        <div className="hidden lg:block">
+          <NavList activeItem={activeItem} setActiveItem={setActiveItem} />
+        </div>
+        <div className="flex items-center gap-[45px]">
+          <Link to="/login">
+            <Button
+              className="w-[100px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[75px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
+              placeholder={undefined}
+              onResize={undefined}
+              onResizeCapture={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              Sign in
+            </Button>
+          </Link>
+          <Link to="/cart">
+            <IconButton
+              size="sm"
+              className="cursor-pointer w-6 h-6"
+              placeholder={undefined}
+              onResize={undefined}
+              onResizeCapture={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              <img src={cart_icon} alt="Company Logo" />
+            </IconButton>
+          </Link>
+          <div className="w-[22px] h-[22px] flex items-center justify-center mt-[-45px] ms-[-55px] border rounded-[11px] text-[14px] text-white bg-red-500 cursor-pointer">
+            0
+          </div>
+        </div>
         <IconButton
           size="sm"
           variant="text"
@@ -103,7 +151,7 @@ const AppNavBar = () => {
           )}
         </IconButton>
       </div>
-      <Collapse open={open} className="lg:hidden">
+      {/* <Collapse open={open} className="lg:hidden">
         <div className="mt-2 rounded-xl bg-white py-2">
           <NavList />
           <Button
@@ -118,7 +166,7 @@ const AppNavBar = () => {
             Sign in
           </Button>
         </div>
-      </Collapse>
+      </Collapse> */}
     </Navbar>
   );
 };
