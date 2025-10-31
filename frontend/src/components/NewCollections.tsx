@@ -69,14 +69,15 @@ const new_collections = [
 
 const NewCollections = () => {
   return (
-    <div className="flex flex-col items-center gap-[10px] h-[90vh] max-w-full">
-      <h1 className="text-[#171717] text-[40px] font-[600]">NEW COLLECTIONS</h1>
+    <div className="flex flex-col items-center gap-[10px] mb-[100px] max-w-full">
+      <h1 className="text-[#171717] text-[30px] font-[600]">NEW COLLECTIONS</h1>
       <hr className="w-[200px] h-[6px] border rounded-[10px] bg-[#252525]" />
       <div className="grid grid-cols-4 mt-[50px] gap-[30px]">
         {new_collections.map((product, index) => {
           return (
             <Item
               key={index}
+              id={product.id}
               name={product.name}
               image={product.image}
               price={product.new_price}

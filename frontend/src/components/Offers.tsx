@@ -3,7 +3,7 @@ import exclusive_image from "../assets/exclusive_image.png";
 
 const Offers = () => {
   return (
-    <div className="w-[70%] max-h-[60vh] flex m-auto my-[150px] bg-[linear-gradient(180deg,#fde1ff,#e1ffea22_60%)]">
+    <div className="w-[80%] max-h-[60vh] flex m-auto my-[150px] bg-[linear-gradient(180deg,#fde1ff,#e1ffea22_60%)]">
       <div className="flex flex-1 flex-col justify-center pl-[80px]">
         <h1 className="text-[#171717] text-[40px] font-[600]">Exclusive</h1>
         <h1 className="text-[#171717] text-[40px] font-[600]">

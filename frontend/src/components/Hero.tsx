@@ -17,7 +17,7 @@ const Hero = () => {
           <p className="text-[#171717] text-[40px] font-[700]">collections</p>
           <p className="text-[#171717] text-[40px] font-[700]">for everyone</p>
         </div>
-        <div className="flex justify-center items-center gap-[15px] w-[310px] h-[70px] rounded-[75px] mt-[30px] bg-[#ff4141] text-white text-[22px] font-[500] cursor-pointer">
+        <div className="flex justify-center items-center gap-[15px] w-[280px] h-[60px] rounded-[75px] mt-[30px] bg-[#ff4141] text-white text-[22px] font-[500] cursor-pointer">
           <div>Latest Collection</div>
           <img src={arrow_icon} alt="" />
         </div>

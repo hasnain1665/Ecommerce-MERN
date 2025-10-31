@@ -8,7 +8,9 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import logo from "../assets/logo.png";
-import cart_icon from "../assets/cart_icon.png";
+// import cart_icon from "../assets/cart_icon.png";
+import { FiShoppingCart } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
 
 interface NavItemPropsType {
@@ -116,21 +118,15 @@ const AppNavBar = () => {
             </Button>
           </Link>
           <Link to="/cart">
-            <IconButton
-              size="sm"
-              className="cursor-pointer w-6 h-6"
-              placeholder={undefined}
-              onResize={undefined}
-              onResizeCapture={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              <img src={cart_icon} alt="Company Logo" />
-            </IconButton>
+            <div className="relative group">
+              <div className="p-2 rounded-full transition-all duration-300 group-hover:bg-red-50">
+                <FiShoppingCart className="w-[28px] h-[28px] text-[#515151] transition-all duration-300 group-hover:text-red-500 group-hover:scale-110" />
+              </div>
+              <div className="absolute top-[-3px] right-[-3px] w-[18px] h-[18px] flex items-center justify-center border rounded-full text-[12px] text-white bg-red-500 transition-all duration-300 group-hover:scale-110">
+                0
+              </div>
+            </div>
           </Link>
-          <div className="w-[22px] h-[22px] flex items-center justify-center mt-[-45px] ms-[-55px] border rounded-[11px] text-[14px] text-white bg-red-500 cursor-pointer">
-            0
-          </div>
         </div>
         <IconButton
           size="sm"
