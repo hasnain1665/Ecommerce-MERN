@@ -13,7 +13,7 @@ import kids_banner from "./assets/banner_kids.png";
 
 function App() {
   return (
-    <div className="m-0 p-0">
+    <div className="w-full">
       <BrowserRouter>
         <AppNavBar />
         <Routes>

@@ -36,6 +36,8 @@ import p35_img from "../assets/product_35.png";
 import p36_img from "../assets/product_36.png";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../components/ProductDisplay";
+import DescriptionBox from "../components/DescriptionBox";
+import RelatedProducts from "../components/RelatedProducts";
 
 const all_product = [
   {
@@ -334,6 +336,8 @@ const Product = () => {
   return (
     <div>
       <ProductDisplay product={product} />
+      <DescriptionBox />
+      <RelatedProducts />
     </div>
   );
 };

@@ -1,14 +1,7 @@
-import {
-  Navbar,
-  //Collapse,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
+import { Typography, Button, Collapse } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
-// import cart_icon from "../assets/cart_icon.png";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { Link } from "react-router-dom";
@@ -57,7 +50,7 @@ function NavList({ activeItem, setActiveItem }: NavListProps) {
   const navItems = ["Shop", "Men", "Women", "Kids"];
   const paths = ["/", "/men", "/women", "/kids"];
   return (
-    <ul className="flex items-center gap-[50px] text-black text-[15px] font-[500]">
+    <ul className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[50px] text-black text-[15px] font-[500]">
       {navItems.map((item, index) => (
         <NavItem
           key={item}
@@ -75,19 +68,20 @@ const AppNavBar = () => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Shop");
 
-  const handleOpen = () => setOpen((cur) => !cur);
+  const handleOpen = () => {
+    setOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpen(false)
+    );
+  }, []);
 
   return (
-    <Navbar
-      color="transparent"
-      fullWidth
-      placeholder={undefined}
-      onResize={undefined}
-      onResizeCapture={undefined}
-      onPointerEnterCapture={undefined}
-      onPointerLeaveCapture={undefined}
-    >
-      <div className="container mx-auto flex items-center justify-around p-[16px] shadow-[0_1px_3px_-2px_rgb(0,0,0)]">
+    <div>
+      <div className="mx-[5px] lg:mx-auto flex items-center justify-between lg:justify-around p-[16px] shadow-[0_1px_3px_-2px_rgb(0,0,0)]">
         <div className="flex items-center gap-[10px]">
           <img src={logo} alt="Company Logo" />
           <Typography
@@ -104,10 +98,10 @@ const AppNavBar = () => {
         <div className="hidden lg:block">
           <NavList activeItem={activeItem} setActiveItem={setActiveItem} />
         </div>
-        <div className="flex items-center gap-[45px]">
-          <Link to="/login">
+        <div className="flex items-center gap-[25px]">
+          <Link to="/login" className="hidden lg:block">
             <Button
-              className="w-[100px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[75px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
+              className="w-[110px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
               placeholder={undefined}
               onResize={undefined}
               onResizeCapture={undefined}
@@ -127,43 +121,45 @@ const AppNavBar = () => {
               </div>
             </div>
           </Link>
-        </div>
-        <IconButton
-          size="sm"
-          variant="text"
-          color="blue-gray"
-          onClick={handleOpen}
-          className="ml-auto inline-block text-blue-gray-900 lg:hidden"
-          placeholder={undefined}
-          onResize={undefined}
-          onResizeCapture={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          {open ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
-      </div>
-      {/* <Collapse open={open} className="lg:hidden">
-        <div className="mt-2 rounded-xl bg-white py-2">
-          <NavList />
           <Button
-            className="mb-2"
-            fullWidth
+            onClick={handleOpen}
+            className="w-auto h-auto text-[#515151] text-[18px] font-[500] cursor-pointer lg:hidden"
             placeholder={undefined}
             onResize={undefined}
             onResizeCapture={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            Sign in
+            {open ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
           </Button>
         </div>
-      </Collapse> */}
-    </Navbar>
+      </div>
+      <Collapse open={open}>
+        {open && (
+          <div className="lg:hidden mx-auto py-2">
+            <NavList activeItem={activeItem} setActiveItem={setActiveItem} />
+            <div className="flex justify-center mt-4 pb-2">
+              <Link to="/login" onClick={() => setOpen(false)}>
+                <Button
+                  className="w-[110px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
+                  placeholder={undefined}
+                  onResize={undefined}
+                  onResizeCapture={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Sign in
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
+      </Collapse>
+    </div>
   );
 };
 

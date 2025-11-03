@@ -340,8 +340,12 @@ const ShopCategory: React.FC<ShopCategoryProps> = ({
 }) => {
   return (
     <div>
-      <img src={banner} alt="" className="block mx-auto my-[30px] w-[82%]" />
-      <div className="flex my-[0px] mx-[110px] justify-between items-center">
+      <img
+        src={banner}
+        alt=""
+        className="block mx-auto my-[20px] sm:my-[30px] w-full sm:w-[90%] lg:w-[86%] px-4 sm:px-0"
+      />
+      <div className="flex flex-col sm:flex-row my-[0px] mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 justify-between items-start sm:items-center gap-4 sm:gap-0 w-full lg:w-[86%]">
         <p>
           <span className="font-[600]">Showing 1-12</span> out of 36 products
         </p>
@@ -350,7 +354,7 @@ const ShopCategory: React.FC<ShopCategoryProps> = ({
           Sort by <MdKeyboardArrowDown size={20} />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-[40px] my-[20px] mx-auto w-fit">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-[20px] mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 lg:w-[86%]">
         {all_product
           .filter((item) => item.category === itemCategory)
           .map((product, index) => {
@@ -365,7 +369,7 @@ const ShopCategory: React.FC<ShopCategoryProps> = ({
             );
           })}
       </div>
-      <div className="flex justify-center items-center gap-4 mt-[70px] mb-[50px]">
+      <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mt-[40px] sm:mt-[70px] mb-[30px] sm:mb-[50px] px-4">
         <button className="py-[12px] px-[24px] rounded-[40px] border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500] disabled:opacity-50 disabled:cursor-not-allowed">
           Previous
         </button>

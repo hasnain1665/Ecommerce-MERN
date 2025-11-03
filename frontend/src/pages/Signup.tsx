@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Signup = () => {
   return (
     <div className="w-full min-h-screen bg-[#fce3fe] flex items-center justify-center p-0 m-0">
@@ -27,9 +29,11 @@ const Signup = () => {
         </button>
         <p className="mt-[20px] text-[#5c5c5c] text-[18px] font-[500]">
           Already have an account?{" "}
-          <span className="text-[#ff4141] font-[600] cursor-pointer">
-            Login here
-          </span>
+          <Link to="/login">
+            <span className="text-[#ff4141] font-[600] cursor-pointer">
+              Login here
+            </span>
+          </Link>
         </p>
         <div className="flex items-center mt-[25px] gap-[10px] text-[#5c5c5c] text-[16px] font-[500]">
           <input type="checkbox" name="" id="" />
