@@ -37,12 +37,12 @@ const data_product = [
 
 const Popular = () => {
   return (
-    <div className="flex flex-col items-center gap-[10px] mb-[100px] max-w-full">
-      <h1 className="text-[#171717] text-[30px] font-[600]">
+    <div className="flex flex-col items-center gap-[10px] mb-[60px] sm:mb-[80px] lg:mb-[100px] px-4">
+      <h1 className="text-[#171717] text-[22px] sm:text-[26px] lg:text-[30px] font-[600]">
         POPULAR IN WOMEN
       </h1>
-      <hr className="w-[200px] h-[6px] border rounded-[10px] bg-[#252525]" />
-      <div className="mt-[50px] flex gap-[30px]">
+      <hr className="w-[150px] sm:w-[180px] lg:w-[200px] h-[5px] sm:h-[6px] border rounded-[10px] bg-[#252525]" />
+      <div className="mt-[30px] sm:mt-[40px] lg:mt-[50px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-[30px] px-6 sm:px-8 lg:px-10 w-full max-w-[1400px]">
         {data_product.map((product, index) => {
           return (
             <Item

@@ -5,9 +5,10 @@ import connectDB from "./db/index";
 import cookieParser from "cookie-parser";
 
 // routes import
-import userRouter from "./routes/userRoutes";
-import categoryRouter from "./routes/categoryRoutes";
-import productRouter from "./routes/productRoutes";
+import userRouter from "./routes/user";
+import categoryRouter from "./routes/category";
+import productRouter from "./routes/product";
+import cartRouter from "./routes/cart";
 
 // configure env
 dotenv.config();
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use("/users", userRouter);
 app.use("/category", categoryRouter);
 app.use("/product", productRouter);
+app.use("/cart", cartRouter);
 
 app.get("/", (req, res) => {
   res.send("Hasnain");

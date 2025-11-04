@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { upload } from "../middlewares/multerMiddleware";
-import { isAdmin, verifyJWT } from "../middlewares/authMiddleware";
+import { upload } from "../middlewares/multer";
+import { isAdmin, verifyJWT } from "../middlewares/auth";
 import {
   createProduct,
   deleteProduct,
@@ -8,7 +8,7 @@ import {
   getAllProducts,
   updateProduct,
   getProducts,
-} from "../controllers/productController";
+} from "../controllers/product";
 
 const router = Router();
 

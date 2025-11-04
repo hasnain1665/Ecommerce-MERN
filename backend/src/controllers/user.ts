@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { User } from "../models/userModel";
+import { User } from "../models/user";
 import { comparePassword, hashPassword } from "../utils/authHelper";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { Cart } from "../models/cart";
 
 interface CustomRequest extends Request {
   user?: any;

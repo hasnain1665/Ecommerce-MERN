@@ -28,15 +28,15 @@ const ProductDisplay: React.FC<ProductProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex gap-10 mx-[140px] my-[20px]">
-      <div className="flex gap-4">
-        <div className="flex flex-col gap-4">
+    <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 mx-4 sm:mx-8 lg:mx-[140px] my-[20px] sm:my-[30px] lg:my-[20px]">
+      <div className="flex gap-3 sm:gap-4">
+        <div className="hidden md:flex flex-col gap-3 sm:gap-4">
           {[1, 2, 3, 4].map((i) => (
             <img
               key={i}
               src={product?.image}
               alt={product?.name}
-              className="max-w-[100px] max-h-[95px] object-contain cursor-pointer hover:border"
+              className="max-w-[80px] sm:max-w-[90px] lg:max-w-[100px] max-h-[75px] sm:max-h-[85px] lg:max-h-[95px] object-contain cursor-pointer hover:border border-gray-300 rounded"
             />
           ))}
         </div>
@@ -44,31 +44,35 @@ const ProductDisplay: React.FC<ProductProps> = ({ product }) => {
           <img
             src={product?.image}
             alt={product?.name}
-            className="max-w-[500px] max-h-[600px] object-contain rounded"
+            className="w-full max-w-full md:max-w-[400px] lg:max-w-[500px] max-h-[400px] object-contain rounded"
           />
         </div>
       </div>
-      <div className="flex flex-col my-[0px] ms-[40px]">
-        <h1 className="text-[#3d3d3d] text-[28px] font-[600]">
+      <div className="flex flex-col my-[0px] lg:ms-[40px]">
+        <h1 className="text-[#3d3d3d] text-[22px] sm:text-[25px] lg:text-[28px] font-[600]">
           {product?.name}
         </h1>
 
         <div className="flex items-center gap-3 my-[10px]">
-          <div className="text-[#ff4141] text-[24px] font-[700]">
+          <div className="text-[#ff4141] text-[20px] sm:text-[22px] lg:text-[24px] font-[700]">
             ${product?.new_price}
           </div>
         </div>
 
-        <div className="text-gray-600 mb-[20px]">{product?.name}</div>
+        <div className="text-gray-600 mb-[15px] sm:mb-[18px] lg:mb-[20px] text-[14px] sm:text-[15px] lg:text-[16px]">
+          {product?.name}
+        </div>
 
-        <div className="mb-[20px]">
-          <p className="font-[600] text-black mb-[10px]">Select Size</p>
-          <div className="flex gap-3">
+        <div className="mb-[15px] sm:mb-[18px] lg:mb-[20px]">
+          <p className="font-[600] text-black mb-[8px] sm:mb-[10px] text-[15px] sm:text-[16px]">
+            Select Size
+          </p>
+          <div className="flex gap-2 sm:gap-3">
             {sizes.map((size) => (
               <div
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`w-[50px] h-[50px] flex items-center justify-center border-2 rounded cursor-pointer transition-all ${
+                className={`w-[45px] h-[45px] sm:w-[48px] sm:h-[48px] lg:w-[50px] lg:h-[50px] flex items-center justify-center border-2 rounded cursor-pointer transition-all text-[14px] sm:text-[15px] lg:text-[16px] ${
                   selectedSize === size
                     ? "border-[#ff4141] bg-[#ff4141] text-white"
                     : "border-gray-300 hover:border-gray-400"
@@ -80,28 +84,30 @@ const ProductDisplay: React.FC<ProductProps> = ({ product }) => {
           </div>
         </div>
 
-        <div className="mb-[20px]">
-          <p className="font-[600] text-black mb-[10px]">Quantity</p>
-          <div className="flex items-center gap-3">
+        <div className="mb-[15px] sm:mb-[18px] lg:mb-[20px]">
+          <p className="font-[600] text-black mb-[8px] sm:mb-[10px] text-[15px] sm:text-[16px]">
+            Quantity
+          </p>
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={decrementQuantity}
-              className="w-[40px] h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[20px] cursor-pointer hover:border-gray-400"
+              className="w-[38px] h-[38px] sm:w-[40px] sm:h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[18px] sm:text-[20px] cursor-pointer hover:border-gray-400"
             >
               -
             </button>
-            <div className="w-[60px] h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[18px] font-[600]">
+            <div className="w-[55px] h-[38px] sm:w-[60px] sm:h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[16px] sm:text-[18px] font-[600]">
               {quantity}
             </div>
             <button
               onClick={incrementQuantity}
-              className="w-[40px] h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[20px] cursor-pointer hover:border-gray-400"
+              className="w-[38px] h-[38px] sm:w-[40px] sm:h-[40px] border-2 border-gray-300 rounded flex items-center justify-center text-[18px] sm:text-[20px] cursor-pointer hover:border-gray-400"
             >
               +
             </button>
           </div>
         </div>
 
-        <button className="py-[15px] px-[40px] w-[200px] text-white text-[16px] font-[600] bg-[#ff4141] rounded border-none outline-none cursor-pointer hover:bg-[#e63939] transition-all">
+        <button className="py-[13px] sm:py-[14px] lg:py-[15px] px-[35px] sm:px-[38px] lg:px-[40px] w-full sm:w-[190px] lg:w-[200px] text-white text-[15px] sm:text-[16px] font-[600] bg-[#ff4141] rounded border-none outline-none cursor-pointer hover:bg-[#e63939] transition-all">
           ADD TO CART
         </button>
       </div>

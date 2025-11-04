@@ -44,9 +44,10 @@ function NavItem({ label, isActive, onClick, path }: NavItemPropsType) {
 interface NavListProps {
   activeItem: string;
   setActiveItem: (item: string) => void;
+  setOpen: (open: boolean) => void;
 }
 
-function NavList({ activeItem, setActiveItem }: NavListProps) {
+function NavList({ activeItem, setActiveItem, setOpen }: NavListProps) {
   const navItems = ["Shop", "Men", "Women", "Kids"];
   const paths = ["/", "/men", "/women", "/kids"];
   return (
@@ -56,7 +57,10 @@ function NavList({ activeItem, setActiveItem }: NavListProps) {
           key={item}
           label={item}
           isActive={activeItem === item}
-          onClick={() => setActiveItem(item)}
+          onClick={() => {
+            setActiveItem(item);
+            setOpen(false);
+          }}
           path={paths[index]}
         />
       ))}
@@ -96,12 +100,20 @@ const AppNavBar = () => {
           </Typography>
         </div>
         <div className="hidden lg:block">
-          <NavList activeItem={activeItem} setActiveItem={setActiveItem} />
+          <NavList
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            setOpen={setOpen}
+          />
         </div>
         <div className="flex items-center gap-[25px]">
-          <Link to="/login" className="hidden lg:block">
+          <Link
+            to="/login"
+            className="hidden lg:block"
+            onClick={() => setActiveItem("")}
+          >
             <Button
-              className="w-[110px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
+              className="w-[110px] h-[35px] p-[0px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
               placeholder={undefined}
               onResize={undefined}
               onResizeCapture={undefined}
@@ -111,7 +123,7 @@ const AppNavBar = () => {
               Sign in
             </Button>
           </Link>
-          <Link to="/cart">
+          <Link to="/cart" onClick={() => setActiveItem("")}>
             <div className="relative group">
               <div className="p-2 rounded-full transition-all duration-300 group-hover:bg-red-50">
                 <FiShoppingCart className="w-[28px] h-[28px] text-[#515151] transition-all duration-300 group-hover:text-red-500 group-hover:scale-110" />
@@ -123,7 +135,7 @@ const AppNavBar = () => {
           </Link>
           <Button
             onClick={handleOpen}
-            className="w-auto h-auto text-[#515151] text-[18px] font-[500] cursor-pointer lg:hidden"
+            className="w-auto h-auto text-[#515151] text-[18px] font-[500] cursor-pointer lg:hidden p-[0px]"
             placeholder={undefined}
             onResize={undefined}
             onResizeCapture={undefined}
@@ -141,11 +153,21 @@ const AppNavBar = () => {
       <Collapse open={open}>
         {open && (
           <div className="lg:hidden mx-auto py-2">
-            <NavList activeItem={activeItem} setActiveItem={setActiveItem} />
+            <NavList
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
+              setOpen={setOpen}
+            />
             <div className="flex justify-center mt-4 pb-2">
-              <Link to="/login" onClick={() => setOpen(false)}>
+              <Link
+                to="/login"
+                onClick={() => {
+                  setOpen(false);
+                  setActiveItem("");
+                }}
+              >
                 <Button
-                  className="w-[110px] h-[35px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
+                  className="w-[110px] h-[35px] p-[0px] border-solid border-[1px] border-[#7a7a7a] rounded-[5px] text-[#515151] text-[18px] font-[500] cursor-pointer hover:bg-red-500 hover:text-white"
                   placeholder={undefined}
                   onResize={undefined}
                   onResizeCapture={undefined}

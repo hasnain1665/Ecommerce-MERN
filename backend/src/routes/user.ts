@@ -4,8 +4,8 @@ import {
   logoutUser,
   refreshAccessToken,
   registerUser,
-} from "../controllers/userController";
-import { verifyJWT } from "../middlewares/authMiddleware";
+} from "../controllers/user";
+import { verifyJWT } from "../middlewares/auth";
 
 const router = Router();
 

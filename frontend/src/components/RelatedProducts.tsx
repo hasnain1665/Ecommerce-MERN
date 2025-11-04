@@ -37,10 +37,12 @@ const new_collections = [
 
 const RelatedProducts = () => {
   return (
-    <div className="flex flex-col items-center gap-[10px] mb-[100px] max-w-full">
-      <h1>YOU MAY ALSO LIKE</h1>
-      <hr />
-      <div className="grid grid-cols-4 mt-[50px] gap-[30px]">
+    <div className="flex flex-col items-center gap-[10px] mb-[60px] sm:mb-[80px] lg:mb-[100px] px-4">
+      <h1 className="text-[20px] sm:text-[24px] lg:text-[28px] font-[600] text-[#171717]">
+        YOU MAY ALSO LIKE
+      </h1>
+      <hr className="w-[150px] sm:w-[180px] lg:w-[200px] h-[5px] sm:h-[6px] border rounded-[10px] bg-[#252525]" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mt-[30px] sm:mt-[40px] lg:mt-[50px] gap-4 sm:gap-6 lg:gap-[30px] px-4 sm:px-6 lg:px-8 w-full max-w-[1400px]">
         {new_collections.map((product, index) => {
           return (
             <Item

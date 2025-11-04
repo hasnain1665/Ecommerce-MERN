@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { isAdmin, verifyJWT } from "../middlewares/authMiddleware";
+import { isAdmin, verifyJWT } from "../middlewares/auth";
 import {
   createCategory,
   deleteCategory,
   getCategories,
   updateCategory,
-} from "../controllers/categoryController";
+} from "../controllers/category";
 
 const router = Router();
 

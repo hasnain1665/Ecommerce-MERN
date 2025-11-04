@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { IProduct, Product } from "../models/productModel";
-import { Category } from "../models/categoryModel";
+import { IProduct, Product } from "../models/product";
+import { Category } from "../models/category";
 import { pagination } from "../utils/paginationHelper";
 
 const createProduct = async (req: Request, res: Response): Promise<void> => {

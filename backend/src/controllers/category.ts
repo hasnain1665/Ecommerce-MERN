@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Category } from "../models/categoryModel";
+import { Category } from "../models/category";
 
 const createCategory = async (req: Request, res: Response): Promise<void> => {
   try {
