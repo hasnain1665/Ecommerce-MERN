@@ -20,7 +20,7 @@ router.post(
   createProduct
 );
 router.get("/get-all", getAllProducts);
-router.get("/products", getProducts);
+router.get("/products/:category", getProducts);
 router.get("/get-single/:id", getSingleProduct);
 router.put(
   "/update/:id",

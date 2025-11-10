@@ -6,11 +6,19 @@ import { pagination } from "../utils/paginationHelper";
 const createProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, description, price, category, quantity } = req.body;
-    const image = req.file?.path;
 
-    if (!name || !description || !price || !category || !quantity || !image) {
+    if (
+      !name ||
+      !description ||
+      !price ||
+      !category ||
+      !quantity ||
+      !req.file
+    ) {
       res.status(400).send({ message: "All fields are Required" });
     }
+
+    const image = "/images/" + req.file?.originalname;
 
     const existingProduct = await Product.findOne({ name });
 
@@ -74,15 +82,31 @@ const getProducts = async (req: Request, res: Response): Promise<void> => {
       page?: string;
     };
 
-    const products = await pagination<IProduct>(Product, limit, page);
+    const { category } = req.params;
+    const itemCategory = await Category.findOne({ name: category });
 
-    const count = await Product.countDocuments();
+    if (!itemCategory) {
+      res.status(404).json({
+        success: false,
+        message: "Category not found",
+      });
+      return;
+    }
 
+    const products = await pagination<IProduct>(
+      Product,
+      limit,
+      page,
+      itemCategory._id
+    );
+
+    const count = await Product.countDocuments({ category: itemCategory._id });
     res.status(201).json({
       success: true,
       message: "Products Fetched Successfully",
       totalPages: Math.ceil(count / Number(limit)),
       currentPage: Number(page),
+      totalProducts: count,
       products,
     });
   } catch (error) {
@@ -120,24 +144,26 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, description, price, category, quantity } = req.body;
     const { id } = req.params;
-    const image = req.file?.path;
 
     const existingCategory = await Category.findOne({ name: category });
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      id,
-      {
-        name,
-        description,
-        price,
-        category: existingCategory?._id,
-        quantity,
-        image,
-      },
-      { new: true }
-    );
+    const updateData: any = {
+      name,
+      description,
+      price,
+      category: existingCategory?._id,
+      quantity,
+    };
 
-    res.status(201).json({
+    if (req.file) {
+      updateData.image = "/images/" + req.file.originalname;
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
+      new: true,
+    }).populate("category");
+
+    res.status(200).json({
       success: true,
       message: "Product Updated Successfully",
       updatedProduct,

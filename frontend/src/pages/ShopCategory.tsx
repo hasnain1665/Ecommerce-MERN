@@ -1,343 +1,51 @@
 import { MdKeyboardArrowDown } from "react-icons/md";
-
-import p1_img from "../assets/product_1.png";
-import p2_img from "../assets/product_2.png";
-import p3_img from "../assets/product_3.png";
-import p4_img from "../assets/product_4.png";
-import p5_img from "../assets/product_5.png";
-import p6_img from "../assets/product_6.png";
-import p7_img from "../assets/product_7.png";
-import p8_img from "../assets/product_8.png";
-import p9_img from "../assets/product_9.png";
-import p10_img from "../assets/product_10.png";
-import p11_img from "../assets/product_11.png";
-import p12_img from "../assets/product_12.png";
-import p13_img from "../assets/product_13.png";
-import p14_img from "../assets/product_14.png";
-import p15_img from "../assets/product_15.png";
-import p16_img from "../assets/product_16.png";
-import p17_img from "../assets/product_17.png";
-import p18_img from "../assets/product_18.png";
-import p19_img from "../assets/product_19.png";
-import p20_img from "../assets/product_20.png";
-import p21_img from "../assets/product_21.png";
-import p22_img from "../assets/product_22.png";
-import p23_img from "../assets/product_23.png";
-import p24_img from "../assets/product_24.png";
-import p25_img from "../assets/product_25.png";
-import p26_img from "../assets/product_26.png";
-import p27_img from "../assets/product_27.png";
-import p28_img from "../assets/product_28.png";
-import p29_img from "../assets/product_29.png";
-import p30_img from "../assets/product_30.png";
-import p31_img from "../assets/product_31.png";
-import p32_img from "../assets/product_32.png";
-import p33_img from "../assets/product_33.png";
-import p34_img from "../assets/product_34.png";
-import p35_img from "../assets/product_35.png";
-import p36_img from "../assets/product_36.png";
 import Item from "../components/Item";
-
-const all_product = [
-  {
-    id: 1,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p1_img,
-    new_price: 50.0,
-    old_price: 80.5,
-  },
-  {
-    id: 2,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p2_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 3,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p3_img,
-    new_price: 60.0,
-    old_price: 100.5,
-  },
-  {
-    id: 4,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p4_img,
-    new_price: 100.0,
-    old_price: 150.0,
-  },
-  {
-    id: 5,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p5_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 6,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p6_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 7,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p7_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 8,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p8_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 9,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p9_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 10,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p10_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 11,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p11_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 12,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    category: "women",
-    image: p12_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 13,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p13_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 14,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p14_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 15,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p15_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 16,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p16_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 17,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p17_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 18,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p18_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 19,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p19_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 20,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p20_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 21,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p21_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 22,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p22_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 23,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p23_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 24,
-    name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
-    category: "men",
-    image: p24_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 25,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p25_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 26,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p26_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 27,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p27_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 28,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p28_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 29,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p29_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 30,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p30_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 31,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p31_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 32,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p32_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 33,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p33_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 34,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p34_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 35,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p35_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-  {
-    id: 36,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
-    category: "kids",
-    image: p36_img,
-    new_price: 85.0,
-    old_price: 120.5,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../redux/productSlice";
 
 interface ShopCategoryProps {
   itemCategory: string;
   banner: string;
 }
 
+enum SortOptions {
+  NEWEST = "Newest",
+  LOWTOHIGH = "Price: Low to High",
+  HIGHTOLOW = "Price: High to Low",
+  NAME_AZ = "Name: A-Z",
+  NAME_ZA = "Name: Z-A",
+}
+
 const ShopCategory: React.FC<ShopCategoryProps> = ({
   itemCategory,
   banner,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { products, totalPages, totalProducts } = useSelector(
+    (state: RootState) => state.products
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortOpen, setSortOpen] = useState(false);
+  const [sortOption, setSortOption] = useState(SortOptions.NEWEST);
+
+  const limit = "4";
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [itemCategory]);
+
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        limit,
+        pageNumber: String(currentPage),
+        category: itemCategory,
+      })
+    );
+  }, [dispatch, limit, currentPage, itemCategory]);
+
   return (
     <div>
       <img
@@ -347,45 +55,99 @@ const ShopCategory: React.FC<ShopCategoryProps> = ({
       />
       <div className="flex flex-col sm:flex-row my-[0px] mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 justify-between items-start sm:items-center gap-4 sm:gap-0 w-full lg:w-[86%]">
         <p>
-          <span className="font-[600]">Showing 1-12</span> out of 36 products
+          <span className="font-[600]">
+            Showing {currentPage * Number(limit) - Number(limit) + 1}-
+            {currentPage * Number(limit) > totalProducts
+              ? totalProducts
+              : currentPage * Number(limit)}
+          </span>{" "}
+          out of {totalProducts} products
         </p>
 
-        <div className="py-[10px] px-[20px] rounded-[40px] border-[1px] border-solid border-[#888] flex items-center gap-2 cursor-pointer hover:bg-gray-50">
-          Sort by <MdKeyboardArrowDown size={20} />
+        <div
+          className="relative py-[10px] px-[20px] rounded-[40px] border-[1px] border-solid border-[#888] flex items-center gap-2 cursor-pointer hover:bg-gray-50"
+          onClick={() => setSortOpen(!sortOpen)}
+        >
+          <p>Sort By:</p>
+          <span className="font-[600]">{sortOption}</span>{" "}
+          <MdKeyboardArrowDown size={20} />
+          {sortOpen && (
+            <div className="absolute top-[45px] right-0 bg-white border rounded-none shadow-lg z-10">
+              {[
+                SortOptions.NEWEST,
+                SortOptions.HIGHTOLOW,
+                SortOptions.LOWTOHIGH,
+                SortOptions.NAME_AZ,
+                SortOptions.NAME_ZA,
+              ].map((option) => (
+                <div
+                  key={option}
+                  onClick={() => {
+                    setSortOption(option);
+                    setSortOpen(false);
+                  }}
+                  className={`px-4 py-2 hover:bg-gray-100 ${
+                    sortOption === option ? "bg-gray-200" : ""
+                  }`}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-[20px] mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 lg:w-[86%]">
-        {all_product
-          .filter((item) => item.category === itemCategory)
+        {[...products]
+          .filter((item) => item.category.name === itemCategory)
+          .sort((a, b) => {
+            switch (sortOption) {
+              case SortOptions.LOWTOHIGH:
+                return a.price - b.price;
+              case SortOptions.HIGHTOLOW:
+                return b.price - a.price;
+              case SortOptions.NAME_AZ:
+                return a.name.localeCompare(b.name);
+              case SortOptions.NAME_ZA:
+                return b.name.localeCompare(a.name);
+              default:
+                return 0;
+            }
+          })
           .map((product, index) => {
             return (
               <Item
                 key={index}
-                id={product.id}
+                id={product._id}
                 name={product.name}
                 image={product.image}
-                price={product.new_price}
+                price={product.price}
               />
             );
           })}
       </div>
       <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mt-[40px] sm:mt-[70px] mb-[30px] sm:mb-[50px] px-4">
-        <button className="py-[12px] px-[24px] rounded-[40px] border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500] disabled:opacity-50 disabled:cursor-not-allowed">
+        <button
+          disabled={currentPage === 1}
+          className={`py-[12px] px-[24px] rounded-[40px] border border-solid border-[#888] font-[500] ${
+            currentPage === 1
+              ? " text-gray-500 cursor-not-allowed"
+              : "hover:bg-red-300 cursor-pointer"
+          }`}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+        >
           Previous
         </button>
-        <div className="flex gap-2">
-          <button className="w-[45px] h-[45px] rounded-full border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500] bg-black text-white hover:text-black">
-            1
-          </button>
-          <button className="w-[45px] h-[45px] rounded-full border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500]">
-            2
-          </button>
-          <button className="w-[45px] h-[45px] rounded-full border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500]">
-            3
-          </button>
-        </div>
-
-        <button className="py-[12px] px-[24px] rounded-[40px] border-[1px] border-solid border-[#888] hover:bg-red-300 cursor-pointer font-[500]">
+        <button
+          disabled={currentPage === totalPages}
+          className={`py-[12px] px-[24px] rounded-[40px] border border-solid border-[#888] font-[500]
+            ${
+              currentPage === totalPages
+                ? "text-gray-500 cursor-not-allowed"
+                : "hover:bg-red-300 cursor-pointer"
+            }`}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+        >
           Next
         </button>
       </div>

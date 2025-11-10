@@ -204,7 +204,7 @@ const refreshAccessToken = async (
       throw new Error("ACCESS_TOKEN_SECRET not defined");
     }
 
-    const refreshToken = jwt.sign({ _id: user?._id }, accessTokenSecretKey, {
+    const refreshToken = jwt.sign({ _id: user?._id }, refreshTokenSecretKey, {
       expiresIn: `${refreshTokenExpiry}d` || "3d",
     });
 

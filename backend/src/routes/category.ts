@@ -12,6 +12,6 @@ const router = Router();
 router.post("/create", verifyJWT, isAdmin, createCategory);
 router.put("/update/:id", verifyJWT, isAdmin, updateCategory);
 router.delete("/delete/:id", verifyJWT, isAdmin, deleteCategory);
-router.get("/get", verifyJWT, isAdmin, getCategories);
+router.get("/get", getCategories);
 
 export default router;

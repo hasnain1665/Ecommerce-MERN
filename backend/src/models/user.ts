@@ -9,7 +9,6 @@ export interface IUser extends Document {
   email: string;
   fullname: string;
   password: string;
-  refreshToken: string;
   role: UserRole.ADMIN | UserRole.USER;
 }
 

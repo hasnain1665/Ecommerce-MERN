@@ -13,20 +13,18 @@ const getTotalCount = async (userId: string) => {
 const addToCart = async (req: CustomRequest, res: Response) => {
   try {
     const userId = req.user._id;
-    const { productId, quantity } = req.body;
+    const { productId, cartQuantity } = req.body;
 
     const existingItem = await Cart.findOne({ userId, productId });
 
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.cartQuantity += cartQuantity;
       await existingItem.save();
       const totalCount = await getTotalCount(userId);
-      console.log("tt1", totalCount);
 
       res.status(200).json({
         success: true,
         message: "Product quantity updated",
-        existingItem,
         totalCount,
       });
       return;
@@ -35,7 +33,7 @@ const addToCart = async (req: CustomRequest, res: Response) => {
     const newCartItem = await Cart.create({
       userId,
       productId,
-      quantity,
+      cartQuantity,
     });
 
     const totalCount = await getTotalCount(userId);
@@ -43,7 +41,6 @@ const addToCart = async (req: CustomRequest, res: Response) => {
     res.status(200).json({
       success: true,
       message: "Product added to cart",
-      newCartItem,
       totalCount,
     });
   } catch (error) {
@@ -59,10 +56,12 @@ const addToCart = async (req: CustomRequest, res: Response) => {
 const updateQuantity = async (req: CustomRequest, res: Response) => {
   try {
     const userId = req.user._id;
-    const { productId, quantity } = req.body;
+    const { productId, cartQuantity } = req.body;
 
-    const existingItem = await Cart.findOne({ userId, productId });
-    console.log(existingItem);
+    const existingItem = await Cart.findOne({ userId, productId }).populate(
+      "productId",
+      "name image price quantity"
+    );
 
     if (!existingItem) {
       res.status(409).send({
@@ -72,16 +71,22 @@ const updateQuantity = async (req: CustomRequest, res: Response) => {
       return;
     }
 
-    existingItem.quantity = quantity;
+    existingItem.cartQuantity = cartQuantity;
 
     await existingItem.save();
 
     const totalCount = await getTotalCount(userId);
 
+    const Item = {
+      product: existingItem.productId,
+      cartQuantity: existingItem.cartQuantity,
+      _id: existingItem._id,
+    };
+
     res.status(200).json({
       success: true,
       message: "Product added to cart",
-      existingItem,
+      Item,
       totalCount,
     });
   } catch (error) {
@@ -143,16 +148,23 @@ const getAllItems = async (req: CustomRequest, res: Response) => {
   try {
     const userId = req.user._id;
 
-    const allItems = await Cart.find({ userId });
-    const productIds = allItems.map((item) => item.productId);
-    const products = await Product.find({ _id: { $in: productIds } });
+    const allItemIds = await Cart.find({ userId }).populate(
+      "productId",
+      "name image price quantity"
+    );
+
+    const allItems = allItemIds.map((item) => ({
+      product: item.productId,
+      cartQuantity: item.cartQuantity,
+      _id: item._id,
+    }));
+
     const totalCount = await getTotalCount(userId);
     res.status(200).json({
       success: true,
       message: "Products fetched successfully",
-      productIds,
       totalCount,
-      products,
+      allItems,
     });
   } catch (error) {
     console.log(error);

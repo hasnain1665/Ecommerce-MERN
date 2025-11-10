@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface Icart extends Document {
   userId: mongoose.Types.ObjectId;
   productId: mongoose.Types.ObjectId;
-  quantity: number;
+  cartQuantity: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,7 +21,7 @@ const cartSchema = new Schema<Icart>(
       ref: "Product",
       required: true,
     },
-    quantity: {
+    cartQuantity: {
       type: Number,
       required: true,
     },
